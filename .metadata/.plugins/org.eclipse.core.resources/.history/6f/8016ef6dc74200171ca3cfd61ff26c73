@@ -1,0 +1,5 @@
+package com.santosh.CollaborationRestServices.Controllers;
+
+public class ForumController {
+
+}

@@ -1,0 +1,133 @@
+package com.santosh.CollaborationBackEnd.dao.impl;
+
+import java.sql.Date;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.hibernate.SQLQuery;
+import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import com.santosh.CollaborationBackEnd.dao.ChatForumDAO;
+import com.santosh.CollaborationBackEnd.model.ChatForum;
+import com.santosh.CollaborationBackEnd.model.ChatForumMessage;
+
+@Repository("chatForumDAO")
+@EnableTransactionManagement
+@Transactional
+public class ChatForumDAOImpl implements ChatForumDAO{
+	
+private static final Logger log=LoggerFactory.getLogger(ChatForumDAOImpl.class);
+
+	
+private SessionFactory sessionFactory;
+
+public ChatForumDAOImpl(SessionFactory sessionFactory)
+{
+	this.sessionFactory=sessionFactory;
+	
+}
+@SuppressWarnings("unchecked")
+@Transactional
+public List<ChatForum> getAllChatForum() 
+{
+	log.debug("Getting all  ChatForum");
+	return sessionFactory.getCurrentSession().createQuery("from ChatFrum").list();
+
+}
+public ChatForum getChatForumById(String chatForumId) {
+	log.debug("Getting ChatForum with id:"+chatForumId);
+	return (ChatForum) sessionFactory.getCurrentSession().createQuery("from ChatForum where chatForumId='"+chatForumId+"'").uniqueResult();
+}
+
+public boolean createChatForum(ChatForum chatForum) {
+	log.debug("Creating new ChatForum");
+	try
+	{
+		sessionFactory.getCurrentSession().save(chatForum);
+		log.debug("ChatForum created");
+		return true;
+	}
+	catch(Exception e)
+	{
+		log.debug("Error occured");
+		return false;
+	}
+}
+
+public boolean addMessage(ChatForumMessage chatForumMessage,long chatForumId) {
+	log.debug("Start of method addMessaage : Adding Message to ChatForum");
+	try
+	{
+		ChatForum chatForum=(ChatForum) sessionFactory.getCurrentSession().createQuery("from ChatForum where chatForumId='"+chatForumId+"'").uniqueResult();
+		chatForumMessage.setMsgTime(new Date(chatForumId));
+		chatForumMessage.setReportMessage('N');
+		chatForum.getMessages().add(chatForumMessage);
+		sessionFactory.getCurrentSession().update(chatForum);
+		log.debug("Message added to ChatForum");
+		return true;
+	}
+	catch(Exception e)
+	{
+		log.debug("Error occured while adding message to ChatForum");
+		return false;
+	}
+}
+
+public boolean removeChatForumMessage( long chatForumId) {
+	try
+	{
+		String sql="delete from CHATFORUM_MSG where CHATFORUMID= :chatForumId and REPORTMESSAGE= :reportMsg";
+		SQLQuery query=sessionFactory.getCurrentSession().createSQLQuery(sql);
+		query.setParameter("chatForumId", chatForumId);
+		query.setParameter("reportMsg", 'Y');
+		query.executeUpdate();
+		log.debug("Message removed");
+		return true;
+	}
+	catch(Exception e)
+	{
+		log.debug("Error occured while removing Message");
+		return false;
+	}
+}
+
+public boolean deleteChatForum(ChatForum chatForum) {
+	log.debug("Start of method deleteChatForum");
+	try
+	{
+		sessionFactory.getCurrentSession().delete(chatForum);
+		log.debug("ChatForum deleted");
+		return true;
+	}
+	catch(Exception e)
+	{
+		log.debug("Error occured while deleting ChatForum");
+		return false;
+	}
+}
+public boolean removeChatForumMessage(String chatForumId) {
+	
+	return false;
+}
+public boolean addMessage(ChatForumMessage chatForumMessage, String string) {
+	
+	return false;
+}
+public ChatForum getChatForumById(int i) {
+	// TODO Auto-generated method stub
+	return null;
+}
+public boolean addMessage(ChatForumMessage chatForumMessage, int i) {
+	// TODO Auto-generated method stub
+	return false;
+}
+public boolean removeChatForumMessage(int i) {
+	// TODO Auto-generated method stub
+	return false;
+}
+}

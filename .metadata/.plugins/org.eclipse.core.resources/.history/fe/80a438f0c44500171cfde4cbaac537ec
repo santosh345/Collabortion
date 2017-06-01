@@ -1,0 +1,37 @@
+<div ng-controller="UserController as ctrl">
+
+<center><h1>Enter the details for registration</h1></center>
+
+<center>
+
+<div class="formcontainer">
+
+<form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+
+Id:<input type="text" ng-model="ctrl.user.id"/><br></br>
+
+Name:<input type="text" ng-model="ctrl.user.name" /><br></br>
+
+Password:<input type="text" ng-model="ctrl.user.password" /><br></br>
+
+Address:<input type="text" ng-model="ctrl.user.address" /><br></br>
+
+Role:<input type="text" ng-model="ctrl.user.role" /><br></br>
+
+Mobile:<input type="text" ng-model="ctrl.user.mobile" /><br></br>
+
+IsOnline:<input type="text" ng-model="ctrl.user.isOnline" /><br></br>
+
+Email:<input type="text" ng-model="ctrl.user.email" /><br></br>
+
+<input type="submit" value="Submit">
+
+<button type="button" ng-click="ctrl.reset()">Reset</button>
+
+</form>
+
+</center>
+
+</div>
+
+</div>

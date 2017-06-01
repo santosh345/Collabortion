@@ -1,0 +1,68 @@
+package com.santosh.CollaborationBackEnd.model;
+
+import java.sql.Date;
+
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+import org.springframework.stereotype.Component;
+
+@Entity
+@Component
+
+@Embeddable
+public class ChatForumMessage {
+
+	@Id
+	private String chatforumId;
+	
+	private String user_Id;
+	
+	private String msgData;
+	
+	private Date msgTime;
+	
+	private char reportMessage;
+
+	public String getChatforumId() {
+		return chatforumId;
+	}
+
+	public void setChatforumId(String chatforumId) {
+		this.chatforumId = chatforumId;
+	}
+
+	public String getUser_Id() {
+		return user_Id;
+	}
+
+	public void setUser_Id(String user_Id) {
+		this.user_Id = user_Id;
+	}
+
+	public String getMsgData() {
+		return msgData;
+	}
+
+	public void setMsgData(String msgData) {
+		this.msgData = msgData;
+	}
+
+	public Date getMsgTime() {
+		return msgTime;
+	}
+
+	public void setMsgTime(Date msgTime) {
+		this.msgTime = msgTime;
+	}
+
+	public char getReportMessage() {
+		return reportMessage;
+	}
+
+	public void setReportMessage(char reportMessage) {
+		this.reportMessage = reportMessage;
+	}
+	
+}

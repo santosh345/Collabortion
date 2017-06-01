@@ -1,0 +1,11 @@
+127.0.0.1 - - [01/Jun/2017:11:13:35 +0530] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [01/Jun/2017:11:13:36 +0530] "GET /CollaborationRestServices/ HTTP/1.1" 404 1046
+127.0.0.1 - - [01/Jun/2017:12:08:31 +0530] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [01/Jun/2017:12:08:33 +0530] "GET /CollaborationRestServices/ HTTP/1.1" 404 1046
+127.0.0.1 - - [01/Jun/2017:14:14:49 +0530] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [01/Jun/2017:14:14:51 +0530] "GET /CollaborationRestServices/ HTTP/1.1" 404 1046
+127.0.0.1 - - [01/Jun/2017:14:49:01 +0530] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [01/Jun/2017:14:49:03 +0530] "GET /CollaborationRestServices/ HTTP/1.1" 404 1046
+0:0:0:0:0:0:0:1 - - [01/Jun/2017:15:29:33 +0530] "GET /CollaborationRestServices/ HTTP/1.1" 404 1046
+127.0.0.1 - - [01/Jun/2017:15:42:44 +0530] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [01/Jun/2017:15:42:45 +0530] "GET /CollaborationRestServices/ HTTP/1.1" 404 1046

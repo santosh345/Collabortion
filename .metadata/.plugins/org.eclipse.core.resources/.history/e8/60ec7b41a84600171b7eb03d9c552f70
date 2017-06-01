@@ -1,0 +1,6 @@
+package com.santosh.CollaborationBackEnd.config;
+
+public class AppContextConfig {
+
+
+}

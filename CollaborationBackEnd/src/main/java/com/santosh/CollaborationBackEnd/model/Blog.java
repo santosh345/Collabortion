@@ -1,0 +1,111 @@
+package com.santosh.CollaborationBackEnd.model;
+
+import java.sql.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.stereotype.Component;
+
+
+@Component
+@Entity
+@Table(name="c_blog_details")
+public class Blog {
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
+	public Date getDatecreated() {
+		return datecreated;
+	}
+
+	public void setDatecreated(Date datecreated) {
+		this.datecreated = datecreated;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	@Id
+	private String id;
+	
+	private String title;
+	
+	private String description;
+	
+	private String user_id;
+	
+	private String comments;
+	
+	private  Date datecreated;
+
+	private String status;
+	
+	@Transient
+	private String Errorcode;
+	
+	@Transient
+	private String Errormessage;
+	
+	public String getErrorcode() {
+		return Errorcode;
+	}
+
+	public void setErrorcode(String errorcode) {
+		Errorcode = errorcode;
+	}
+
+	public String getErrormessage() {
+		return Errormessage;
+	}
+
+	public void setErrormessage(String errormessage) {
+		Errormessage = errormessage;
+	}
+	
+
+}

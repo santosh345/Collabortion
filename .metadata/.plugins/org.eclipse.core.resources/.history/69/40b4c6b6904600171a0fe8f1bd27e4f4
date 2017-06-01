@@ -1,0 +1,5 @@
+package com.santosh.CollaborationBackEnd.dao;
+
+public interface BlogDAO {
+
+}

@@ -1,0 +1,5 @@
+package com.santosh.CollaborationBackEnd.model;
+
+public class Comment {
+
+}

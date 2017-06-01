@@ -1,0 +1,106 @@
+package com.santosh.CollaborationRestServices.Controllers;
+
+import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import com.santosh.CollaborationBackEnd.dao.ChatForumDAO;
+import com.santosh.CollaborationBackEnd.model.ChatForum;
+import com.santosh.CollaborationBackEnd.model.ChatForumMessage;
+
+@RestController
+public class ChatForumController {
+	
+	private static final Logger log=LoggerFactory.getLogger(ChatForumController.class);
+	
+	@Autowired
+	private ChatForum chatForum;
+	
+	@Autowired
+	private ChatForumDAO chatForumDAO;
+	
+	//Test
+	@GetMapping("/getAllChatForum")
+	public ResponseEntity<List<ChatForum>> getAllChatForum(){
+		log.debug("ChatForum ");
+		return new ResponseEntity<List<ChatForum>>(chatForumDAO.getAllChatForum(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/getChatForumById/{chatForumId}")
+	public ResponseEntity<ChatForum> getChatForumById(@PathVariable("chatForumId") long chatForumId){
+		log.debug("Getting chatForum with id:"+chatForumId);
+		chatForum=chatForumDAO.getChatForumById(chatForumId);
+		if(chatForum!=null){
+			log.debug("ChatForum acquired");
+			return new ResponseEntity<ChatForum>(chatForum,HttpStatus.OK);
+		}
+		else{
+			log.debug("ChatForum not acquired");
+			return null;
+		}
+	}
+	
+	@PostMapping("/addMessage")
+	public ResponseEntity<ChatForum> addMessage(@RequestBody ChatForumMessage message){
+		log.debug("Adding message");
+		boolean valid=chatForumDAO.addMessage(message, message.getChatForumId());
+		if(valid){
+			log.debug("Message added");
+			return new ResponseEntity<ChatForum>(chatForumDAO.getChatForumById(message.getChatForumId()),HttpStatus.OK);
+		}
+		else{
+			log.debug("Message not added");
+			return null;
+		}
+	}
+	
+	@GetMapping("/removeMessage/{chatForumId}")
+	public String removeMessage(@PathVariable("chatForumId") long chatForumId){
+		log.debug("Removing message from chatForumId with id:"+chatForumId);
+		boolean valid=chatForumDAO.removeChatForumMessage(chatForumId);
+		if(valid){
+			log.debug("ChatForum message removed");
+			return "Success";
+		}
+		else{
+			log.debug("Message not remove");
+			return "Error";
+		}
+	}
+
+	@GetMapping("/removeChatForum/{chatForumId}")
+	public String removeChatForum(@PathVariable("chatForumId") long chatForumId){
+		log.debug("Removing ChatForum with id:"+chatForumId);
+		chatForum=chatForumDAO.getChatForumById(chatForumId);
+		boolean valid=chatForumDAO.deleteChatForum(chatForum);
+		if(valid){
+			log.debug("ChatForum removed");
+			return "Success";
+		}
+		else{
+			log.debug("ChatForum not removed");
+			return "Error";
+		}
+	}
+	
+	@PostMapping("/createChatForum/")
+	public String createChatForum(@RequestBody ChatForum chatForum){
+		log.debug("Creating ChatForum");
+		boolean valid=chatForumDAO.createChatForum(chatForum);
+		if(valid){
+			log.debug("ChatForum created");
+			return "Success";
+		}
+		else{
+			log.debug("ChatForum not created");
+			return "Error";
+		}
+	}
+}

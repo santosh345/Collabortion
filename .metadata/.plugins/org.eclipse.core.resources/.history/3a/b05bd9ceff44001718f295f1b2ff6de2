@@ -1,0 +1,28 @@
+<div ng-controller="BlogController as ctrl">
+
+<center>Enter Blog details</center>
+
+<form ng-submit="ctrl.submit()" method="post" name ="myForm" class="form-horizontal">
+
+BlogId:<input type="text" ng-model="ctrl.blog.id"><br><br>
+
+Blog Title:<input type="text" ng-model="ctrl.blog.title"/><br><br>
+
+User ID : <input type="text" ng-model="ctrl.blog.User_Id"/><br><br>
+
+Description : <input type="text" ng-model="ctrl.blog.description"/><br><br>
+
+Comments:<input type="text" ng-model="ctrl.blog.comments"/><br></br>
+
+DateCreated:<input type="text" ng-model="ctrl.blog.datecreated"/><br></br>
+
+Status:<input type="text" ng-model="ctrl.blog.status"/><br></br>
+
+<input type="submit" value="Submit">
+
+<button type="button" ng-click="ctrl.reset()">Reset</button>
+
+
+</form>
+
+</div>

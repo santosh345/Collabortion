@@ -1,0 +1,4 @@
+com\santosh\CollaborationBackEnd\TestCase\UserTestCase.class
+com\santosh\CollaborationBackEnd\AppTest.class
+com\santosh\CollaborationBackEnd\TestCase\ChatForumTestCase.class
+com\santosh\CollaborationBackEnd\TestCase\BlogTestCase.class

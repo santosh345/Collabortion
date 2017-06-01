@@ -1,0 +1,5 @@
+package com.santosh.CollaborationBackEnd.dao.impl;
+
+public class JobDAOImpl {
+
+}

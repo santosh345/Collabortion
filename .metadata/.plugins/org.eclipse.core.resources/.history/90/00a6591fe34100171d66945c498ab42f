@@ -1,0 +1,6 @@
+<div ng-controller="ForumController as ctrl">
+
+Forum Name:<input type="text" ng-model="ctrl.forum.forumname"><br><br>
+
+<button type="button" ng-click="ctrl.Submit()">Submit</button>
+

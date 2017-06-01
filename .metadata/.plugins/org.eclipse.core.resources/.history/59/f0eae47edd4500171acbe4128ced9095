@@ -1,0 +1,24 @@
+<div ng-controller="BlogController as btrl">
+<center>
+
+<form ng-submit="btrl.getBlog()">
+
+Enter BlogId:<input type="text" ng-model="id"><br>
+
+<form ng-submit="ctrl.submit()" method="post" name ="myForm" class="form-horizontal">
+
+</form>
+
+</center>
+
+<center>
+
+<p class="ng-hide">{{currentblog.blogName}}</p>
+
+<textarea class="ng-hide">{{currentblog.blogData}}</textarea>
+
+</center>
+
+<button ng-click="selecteditBlog()">Edit Blog</button>
+
+</div>

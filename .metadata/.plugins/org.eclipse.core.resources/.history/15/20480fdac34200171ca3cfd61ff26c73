@@ -1,0 +1,21 @@
+<div ng-controller="BlogController as ctrl">
+<center>Enter Blog details</center>
+<center>
+<form ng-submit="ctrl.CreateBlog()" class="form-horizontal">
+BlogId:<input type="text" ng-model="ctrl.blog.blogId"><br><br>
+
+Blog Title:<input type="text" ng-model="ctrl.blog.blogtitle"/><br><br>
+
+User ID : <input type="text" ng-model="ctrl.blog.blogUser_Id"/><br><br>
+
+Description : <input type="text" ng-model="ctrl.blog.blogDescription"/><br><br>
+
+Blog Data : <input type="text" ng-model="ctrl.blog.blogData"/><br><br>
+
+<button type="button" ng-click="ctrl.CreateBlog()">CreateBlog</button>
+
+</form>
+
+</center>
+
+</div>

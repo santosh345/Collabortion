@@ -1,0 +1,134 @@
+package com.santosh.CollaborationBackEnd.dao.impl;
+
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import com.santosh.CollaborationBackEnd.dao.JobDAO;
+import com.santosh.CollaborationBackEnd.model.Job;
+import com.santosh.CollaborationBackEnd.model.JobApplication;
+
+@Repository("jobDAO")
+@EnableTransactionManagement
+@Transactional
+
+
+public class JobDAOImpl implements JobDAO{
+private static Logger log = LoggerFactory.getLogger(Job.class);
+	
+	private  SessionFactory  sessionFactory;
+
+	private Job getJobDetails;
+
+	private List<Job> getMyAppliedjobs;
+
+	private JobApplication getJobApplication;	
+	
+	public JobDAOImpl(SessionFactory sessionFactory)
+	{
+		this.sessionFactory=sessionFactory;
+	}
+    @Transactional
+	public Job get(String id) {
+		 Job user = (Job) sessionFactory.getCurrentSession().get(Job.class, id);
+		 
+		 return user;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Job> list() {
+		 return sessionFactory.getCurrentSession().createQuery("from Job").list();
+		
+	}
+	
+	@Transactional
+	public boolean isValidCredentials(String id, String password) {
+		Query query =  sessionFactory.getCurrentSession().createQuery("from Job where id =? and password = ? ");
+		query.setString(0, id);
+		query.setString(1, password);
+		
+		 if( query.uniqueResult() ==null)
+		 {
+			 return false;
+		 }
+		 else
+		 {
+			 return true;
+		 }
+		
+	
+	}
+	@Transactional
+	public boolean save(Job user) {
+		try {
+			sessionFactory.getCurrentSession().save(user);
+			return true;
+		} catch (HibernateException e) {
+		
+			e.printStackTrace();
+			return false;
+		}
+	
+	}
+	@Transactional
+	public boolean update(Job user) {
+	try {
+		sessionFactory.getCurrentSession().update(user);
+		return true;
+	} catch (HibernateException e) {
+	
+		e.printStackTrace();
+		return false;
+	}
+	
+	}
+	@Transactional
+	public List<Job> getAllUsers() {		
+		return null;
+	}
+	@Transactional
+	public void addUser(Job newUser) {
+	
+	}
+	public List<Job> getAllOpenedJobs() {
+		
+		return getAllOpenedJobs();
+	}
+	public Job getJobDetails(Long id) {
+		
+		return getJobDetails;
+	}
+	public boolean updateJob(Job job) {
+	
+		return update(job);
+	}
+	public boolean updateJob(JobApplication jobapplicaton) {
+		
+		return false;
+	}
+	public boolean save(JobApplication jobapplication) {
+	
+		return save(jobapplication);
+	}
+	public List<Job> getMyAppliedjobs(String userID) {
+		
+		return getMyAppliedjobs;
+	}
+	public JobApplication getJobApplication(String userID, Long jobID) {
+		
+		return getJobApplication;
+	}
+	public JobApplication getJobApplication(Long id) {
+	
+		return getJobApplication(id);
+	}	
+
+}

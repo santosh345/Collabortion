@@ -1,0 +1,10 @@
+package com.santosh.CollaborationBackEnd.dao.impl;
+
+import com.santosh.CollaborationBackEnd.dao.JobDAO;
+
+@Repository("jobDAO")
+@EnableTransactionManagement
+public class JobDAOImpl implements JobDAO{
+	
+
+}

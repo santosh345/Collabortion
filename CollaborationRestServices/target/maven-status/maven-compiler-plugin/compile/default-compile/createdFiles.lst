@@ -1,0 +1,5 @@
+com\santosh\CollaborationRestServices\Controllers\UserController.class
+com\santosh\CollaborationRestServices\Controllers\ChatForumController.class
+com\santosh\CollaborationRestServices\Controllers\JobController.class
+com\santosh\CollaborationRestServices\Controllers\BlogController.class
+com\santosh\CollaborationRestServices\Controllers\FriendController.class

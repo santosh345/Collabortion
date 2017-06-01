@@ -1,0 +1,16 @@
+<div ng-controller="BlogController as ctrl">
+
+<center>Enter Blog details</center>
+
+<form ng-submit="ctrl.delete()" method="post" name ="myForm" class="form-horizontal">
+
+BlogId:<input type="text" ng-model="ctrl.blog.id"><br><br>
+
+<input type="submit" value="Delete">
+
+<button type="button" ng-click="ctrl.reset()">Reset</button>
+
+
+</form>
+
+</div>

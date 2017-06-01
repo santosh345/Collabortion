@@ -1,0 +1,13 @@
+package com.santosh.CollaborationBackEnd.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import org.springframework.stereotype.Component;
+
+@Entity
+@Component
+@Table(name="")
+public class Friend {
+
+}

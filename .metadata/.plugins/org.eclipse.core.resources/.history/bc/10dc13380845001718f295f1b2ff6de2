@@ -1,0 +1,91 @@
+package com.santosh.CollaborationRestServices.Controllers;
+
+import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import com.santosh.CollaborationBackEnd.dao.BlogDAO;
+import com.santosh.CollaborationBackEnd.model.Blog;
+
+
+@RestController
+public class BlogController {
+private static Logger log=LoggerFactory.getLogger(BlogController.class);
+
+@Autowired
+private Blog blog;
+
+@Autowired
+private BlogDAO blogDAO;
+
+//@GetMapping("/hello")
+public String sayHelloBlog()
+{
+	return " Hello from blog rest service Modifed message";
+}//
+
+@GetMapping("/blogs")
+public ResponseEntity<List<Blog>> getAllBlog()
+{
+List<Blog> blogList=blogDAO.list();
+return new ResponseEntity<List<Blog>>(blogList,HttpStatus.OK);
+}
+@PostMapping("/addBlog/")
+public String createBlog(@RequestBody Blog newBlog)
+{
+log.debug("Starting of createBlog");
+blog=blogDAO.get(newBlog.getId());
+if(blog==null)
+{
+	blogDAO.save(newBlog);
+	log.debug("blog added to database");
+	log.debug("End of method createblog");
+	return "blog added";
+}
+else
+{
+	log.debug("Error blog already exists");
+	log.debug("End of method createblog");
+	return "blog Not added";
+}
+}
+@GetMapping("/blog/{id}")
+public ResponseEntity<Blog> getBlogByID(@PathVariable("id") String id)
+{
+log.debug("Starting of the method getBlogByID");
+log.info("Trying to get blogdetails of the id"+ id);
+
+blog=blogDAO.get(id);
+
+if(blog==null)
+{
+	blog = new Blog();
+	blog.setErrorcode("404");
+	blog.setErrormessage("User does not exist with the id :" + id);
+}
+else
+	
+{
+	blog.setErrorcode("200");
+	blog.setErrormessage("success");
+}
+log.info("**************** Name of the user is " + blog.getId());
+log.debug("**************Ending of the method getBlogByID");
+return new ResponseEntity<Blog>(blog ,HttpStatus.OK);
+}
+@DeleteMapping("id")
+{
+	
+}
+
+
+}
+

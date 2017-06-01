@@ -1,0 +1,25 @@
+package com.santosh.CollaborationBackEnd.model;
+
+import java.sql.Clob;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.springframework.stereotype.Component;
+
+@Entity
+@Component
+@Table(name="Job_Details")
+public class Job {
+@Id
+private String Job_ID;
+
+private String Job_Name;
+
+private Clob JobDescription;
+
+private double JobSalary;
+
+
+}

@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/angular.js"></script>
+<script src="js/angular-cookies.js"></script>
+<script src="js/angular-route.js"></script>
+<script src="js/app.js"></script>
+
+<script src="controllers/UserController.js"></script>
+<script src="controllers/UserService.js"></script>
+<script src="c_blog/BlogController.js"></script>
+<script src="c_blog/BlogService.js"></script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body ng-app="myApp">
+<div ng-include="'Header/CommonHeader.html'"></div>
+<div ng-include="'Footer/CommonFooter.html'"></div>
+<div ng-view></div>
+</body>
+</html>
